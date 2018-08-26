@@ -52,6 +52,13 @@ test('load custom env file', t => {
   t.is(code, '\n\nconsole.log(\'abc123456\');\nconsole.log(\'username123456\');')
 })
 
+test('load custom env file based on NODE_ENV', t => {
+  process.env.NODE_ENV = 'development'
+
+  const {code} = transformFileSync('test/fixtures/env-filename/source.js')
+  t.is(code, '\n\nconsole.log(\'dev-key\');')
+})
+
 test('support `as alias` import syntax', t => {
   const {code} = transformFileSync('test/fixtures/as-alias/source.js')
   t.is(code, '\n\nconst a = \'abc123\';\nconst b = \'username\';')
