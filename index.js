@@ -14,6 +14,10 @@ module.exports = ({types: t}) => ({
       allowUndefined: false
     }, this.opts)
 
+    if (typeof this.opts.path === 'object') {
+      this.opts.path = this.opts.path[process.env.NODE_ENV]
+    }
+
     if (this.opts.safe) {
       this.env = dotenv.parse(readFileSync(this.opts.path))
     } else {

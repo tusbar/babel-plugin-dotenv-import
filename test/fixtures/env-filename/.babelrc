@@ -1,0 +1,9 @@
+{
+  "plugins": [
+    ["../../../", {
+      "path": {
+        "development": "test/fixtures/env-filename/.env.dev"
+      }
+    }]
+  ]
+}

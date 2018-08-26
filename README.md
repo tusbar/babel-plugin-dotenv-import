@@ -118,6 +118,25 @@ console.log(UNDEFINED_VAR === undefined) // true
 
 When `false` (default behavior), an error will be thrown.
 
+## Environment-based path
+
+You can optionally provide an object for the `path` option instead of a string.
+
+```json
+{
+  "plugins": [
+    ["dotenv-import", {
+      "path": {
+        "development": ".env.dev",
+        "production": ".env.prod"
+      }
+    }]
+  ]
+}
+```
+
+This will use a specific path based on `NODE_ENV`. For example, if `process.env.NODE_ENV` is `'development'`, then the `.env.dev` path will be used.
+
 ## Caveats
 
 When using with [`babel-loader`](https://github.com/babel/babel-loader) with caching enabled you will run into issues where environment changes won’t be picked up.
