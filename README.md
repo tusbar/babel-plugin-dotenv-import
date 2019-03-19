@@ -26,7 +26,8 @@ $ npm install babel-plugin-dotenv-import
       "blacklist": null,
       "whitelist": null,
       "safe": false,
-      "allowUndefined": false
+      "allowUndefined": false,
+      "dynamic": false
     }]
   ]
 }
