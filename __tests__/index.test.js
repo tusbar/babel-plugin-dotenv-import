@@ -94,4 +94,15 @@ describe('babel-plugin-dotenv-import', () => {
     const {code} = transformFileSync(FIXTURES + 'undefined/source.js')
     expect(code).toBe('console.log(undefined);')
   })
+
+  it('should throw when variables in example .env file are missing', () => {
+    expect((
+      () => transformFileSync(FIXTURES + 'example-error/source.js')
+    )).toThrow('Missing variables from __tests__/__fixtures__/example-error/.env.example: PASSWORD')
+  })
+
+  it('should allow specifying an example .env file', () => {
+    const {code} = transformFileSync(FIXTURES + 'example-success/source.js')
+    expect(code).toBe('console.log("sam");\nconsole.log("***");')
+  })
 })

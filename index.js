@@ -1,5 +1,6 @@
 const {readFileSync} = require('fs')
 const dotenv = require('dotenv')
+const dotenvSafe = require('dotenv-safe')
 
 module.exports = ({types: t}) => ({
   name: 'dotenv-import',
@@ -11,11 +12,22 @@ module.exports = ({types: t}) => ({
       whitelist: null,
       blacklist: null,
       safe: false,
-      allowUndefined: false
+      allowUndefined: false,
+      example: null
     }, this.opts)
 
     if (this.opts.safe) {
       this.env = dotenv.parse(readFileSync(this.opts.path))
+    } else if (this.opts.example) {
+      try {
+        dotenvSafe.config({
+          path: this.opts.path,
+          example: this.opts.example
+        })
+      } catch (err) {
+        throw new Error(`Missing variables from ${this.opts.example}: ${err.missing.join(', ')}`)
+      }
+      this.env = process.env
     } else {
       dotenv.config({
         path: this.opts.path

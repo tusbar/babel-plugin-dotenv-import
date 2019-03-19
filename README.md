@@ -26,7 +26,8 @@ $ npm install babel-plugin-dotenv-import
       "blacklist": null,
       "whitelist": null,
       "safe": false,
-      "allowUndefined": false
+      "allowUndefined": false,
+      "example": null
     }]
   ]
 }
@@ -82,7 +83,7 @@ It is possible to limit the scope of env variables that will be imported by spec
 
 ## Safe mode
 
-Enable safe mode to only allow environment variables defined in the `.env` file. This will completely ignore everything that is already defined in the environment.
+Enable safe mode to only allow environment variables defined in the `.env` file. This will completely ignore everything that is already defined in the environment and the [example file](#example-.env-file) (if applicable).
 
 The `.env` file has to exist.
 
@@ -117,6 +118,27 @@ console.log(UNDEFINED_VAR === undefined) // true
 ```
 
 When `false` (default behavior), an error will be thrown.
+
+## Example `.env` file
+
+You can leverage an example `.env` file with blank values to dictate the required environment variables for your application. Any missing variables will result in an error.
+
+```json
+{
+  "plugins": [
+    ["dotenv-import", {
+      "example": ".env.example"
+    }]
+  ]
+}
+```
+
+In **.env.example**
+
+```dosini
+USERNAME=
+PASSWORD=
+```
 
 ## Caveats
 
