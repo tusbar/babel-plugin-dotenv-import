@@ -1,0 +1,8 @@
+{
+  "plugins": [
+    ["../../../", {
+      "path": "SECRETS_LOCATION",
+      "dynamic": true
+    }]
+  ]
+}

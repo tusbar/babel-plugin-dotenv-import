@@ -11,8 +11,13 @@ module.exports = ({types: t}) => ({
       whitelist: null,
       blacklist: null,
       safe: false,
-      allowUndefined: false
+      allowUndefined: false,
+      dynamic: false
     }, this.opts)
+
+    if (this.opts.dynamic) {
+      this.opts.path = process.env[this.opts.path]
+    }
 
     if (this.opts.safe) {
       this.env = dotenv.parse(readFileSync(this.opts.path))

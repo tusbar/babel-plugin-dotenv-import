@@ -1,4 +1,5 @@
 const {transformFileSync} = require('@babel/core')
+const {resolve} = require('path');
 
 const FIXTURES = '__tests__/__fixtures__/'
 const env = Object.apply({}, process.env)
@@ -93,5 +94,12 @@ describe('babel-plugin-dotenv-import', () => {
   it('should import undefined variables', () => {
     const {code} = transformFileSync(FIXTURES + 'undefined/source.js')
     expect(code).toBe('console.log(undefined);')
+  })
+
+  it('should load environment variables from .env in dynamic mode', () => {
+    process.env.SECRETS_LOCATION = resolve(__dirname, '__fixtures__', 'dynamic', '.env')
+
+    const {code} = transformFileSync(FIXTURES + 'dynamic/source.js')
+    expect(code).toBe('console.log("123");')
   })
 })

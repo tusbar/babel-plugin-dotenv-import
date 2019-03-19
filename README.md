@@ -118,6 +118,37 @@ console.log(UNDEFINED_VAR === undefined) // true
 
 When `false` (default behavior), an error will be thrown.
 
+## Dynamic path
+
+Enable dynamic mode to read the path from a variable already present in the environment.
+
+```json
+{
+  "plugins": [
+    ["dotenv-import", {
+      "path": "SECRETS_LOCATION",
+      "dynamic": true
+    }]
+  ]
+}
+```
+
+```sh
+set SECRETS_LOCATION=/keys/.env
+```
+
+In **/keys/.env**
+
+```dosini
+API_TOKEN=123
+```
+
+```js
+import {API_TOKEN} from '@env'
+
+console.log(API_TOKEN === 123) // true
+```
+
 ## Caveats
 
 When using with [`babel-loader`](https://github.com/babel/babel-loader) with caching enabled you will run into issues where environment changes won’t be picked up.
