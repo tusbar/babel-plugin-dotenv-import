@@ -16,7 +16,11 @@ module.exports = ({types: t}) => ({
     }
 
     if (this.opts.safe) {
-      this.env = dotenv.parse(readFileSync(this.opts.path))
+      try {
+        this.env = dotenv.parse(readFileSync(this.opts.path))
+      } catch (err) {
+        throw err
+      }
     } else {
       dotenv.config({
         path: this.opts.path
