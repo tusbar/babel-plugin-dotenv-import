@@ -71,6 +71,7 @@
               ]
             }
           ],
+          "unicorn/import-style": "off",
           "no-unused-vars": "off"
         }
       }
