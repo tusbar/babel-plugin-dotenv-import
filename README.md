@@ -1,4 +1,4 @@
-# babel-plugin-dotenv-import [![CircleCI](https://circleci.com/gh/tusbar/babel-plugin-dotenv-import.svg?style=svg)](https://circleci.com/gh/tusbar/babel-plugin-dotenv-import)
+# babel-plugin-dotenv-import
 
 > Load environment variables using `import` statements.
 
