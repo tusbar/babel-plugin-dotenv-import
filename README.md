@@ -3,9 +3,13 @@
 > Load environment variables using `import` statements.
 
 [![npm version](https://badgen.net/npm/v/babel-plugin-dotenv-import)](https://www.npmjs.com/package/babel-plugin-dotenv-import)
-[![dependencies Status](https://badgen.net/david/dep/tusbar/babel-plugin-dotenv-import)](https://david-dm.org/tusbar/babel-plugin-dotenv-import)
 [![codecov](https://badgen.net/codecov/c/github/tusbar/babel-plugin-dotenv-import)](https://codecov.io/gh/tusbar/babel-plugin-dotenv-import)
 [![XO code style](https://badgen.net/badge/code%20style/XO/cyan)](https://github.com/xojs/xo)
+
+## CI
+
+[![Tests](https://github.com/tusbar/babel-plugin-dotenv-import/actions/workflows/tests.yml/badge.svg)](https://github.com/tusbar/babel-plugin-dotenv-import/actions/workflows/tests.yml)
+[![Release](https://github.com/tusbar/babel-plugin-dotenv-import/actions/workflows/release.yml/badge.svg)](https://github.com/tusbar/babel-plugin-dotenv-import/actions/workflows/release.yml)
 
 ## Installation
 
