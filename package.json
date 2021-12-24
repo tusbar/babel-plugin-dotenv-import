@@ -31,15 +31,6 @@
       "/node_modules/",
       "/__fixtures__/"
     ],
-    "reporters": [
-      "default",
-      [
-        "jest-junit",
-        {
-          "outputDirectory": "reports/tests"
-        }
-      ]
-    ],
     "collectCoverage": true,
     "collectCoverageFrom": [
       "index.js"
