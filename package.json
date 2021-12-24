@@ -45,6 +45,10 @@
   "xo": {
     "semicolon": false,
     "space": 2,
+    "rules": {
+      "unicorn/prefer-module": "off",
+      "unicorn/prefer-node-protocol": "off"
+    },
     "overrides": [
       {
         "files": "__tests__/**/*.js",
@@ -67,7 +71,11 @@
           "no-unused-vars": "off"
         }
       }
-    ]
+    ],
+    "prettier": true
+  },
+  "prettier": {
+    "printWidth": 100
   },
   "release": {
     "extends": "@bizon/semantic-release-config"

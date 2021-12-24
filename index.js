@@ -1,4 +1,6 @@
+const process = require('process')
 const {readFileSync} = require('fs')
+
 const dotenv = require('dotenv')
 
 function parseDotenvFile(path) {
@@ -25,14 +27,14 @@ module.exports = ({types: t}) => ({
       blacklist: null,
       safe: false,
       allowUndefined: false,
-      ...this.opts
+      ...this.opts,
     }
 
     if (this.opts.safe) {
       this.env = parseDotenvFile(this.opts.path)
     } else {
       dotenv.config({
-        path: this.opts.path
+        path: this.opts.path,
       })
       this.env = process.env
     }
@@ -41,20 +43,24 @@ module.exports = ({types: t}) => ({
   visitor: {
     ImportDeclaration(path, {opts}) {
       if (path.node.source.value === opts.moduleName) {
-        path.node.specifiers.forEach((specifier, idx) => {
+        for (const [idx, specifier] of path.node.specifiers.entries()) {
           if (specifier.type === 'ImportDefaultSpecifier') {
             throw path.get('specifiers')[idx].buildCodeFrameError('Default import is not supported')
           }
 
           if (specifier.type === 'ImportNamespaceSpecifier') {
-            throw path.get('specifiers')[idx].buildCodeFrameError('Wildcard import is not supported')
+            throw path
+              .get('specifiers')
+              [idx].buildCodeFrameError('Wildcard import is not supported')
           }
 
           const importedId = specifier.imported.name
           const localId = specifier.local.name
 
           if (Array.isArray(opts.whitelist) && !opts.whitelist.includes(importedId)) {
-            throw path.get('specifiers')[idx].buildCodeFrameError(`"${importedId}" was not whitelisted`)
+            throw path
+              .get('specifiers')
+              [idx].buildCodeFrameError(`"${importedId}" was not whitelisted`)
           }
 
           if (Array.isArray(opts.blacklist) && opts.blacklist.includes(importedId)) {
@@ -62,17 +68,19 @@ module.exports = ({types: t}) => ({
           }
 
           if (!opts.allowUndefined && !Object.prototype.hasOwnProperty.call(this.env, importedId)) {
-            throw path.get('specifiers')[idx].buildCodeFrameError(`"${importedId}" is not defined in ${opts.path}`)
+            throw path
+              .get('specifiers')
+              [idx].buildCodeFrameError(`"${importedId}" is not defined in ${opts.path}`)
           }
 
           const binding = path.scope.getBinding(localId)
-          binding.referencePaths.forEach(refPath => {
+          for (const refPath of binding.referencePaths) {
             refPath.replaceWith(t.valueToNode(this.env[importedId]))
-          })
-        })
+          }
+        }
 
         path.remove()
       }
-    }
-  }
+    },
+  },
 })

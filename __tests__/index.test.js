@@ -1,3 +1,5 @@
+const process = require('process')
+
 const {transformFileSync} = require('@babel/core')
 
 const FIXTURES = '__tests__/__fixtures__/'
@@ -9,21 +11,21 @@ describe('babel-plugin-dotenv-import', () => {
   })
 
   it('should throw if the variable does not exist', () => {
-    expect(
-      () => transformFileSync(FIXTURES + 'variable-not-exist/source.js')
-    ).toThrow('"foo" is not defined in .env')
+    expect(() => transformFileSync(FIXTURES + 'variable-not-exist/source.js')).toThrow(
+      '"foo" is not defined in .env',
+    )
   })
 
   it('should throw if default is imported', () => {
-    expect(
-      () => transformFileSync(FIXTURES + 'default-import/source.js')
-    ).toThrow('Default import is not supported')
+    expect(() => transformFileSync(FIXTURES + 'default-import/source.js')).toThrow(
+      'Default import is not supported',
+    )
   })
 
   it('should throw if wildcard is imported', () => {
-    expect(
-      () => transformFileSync(FIXTURES + 'wildcard-import/source.js')
-    ).toThrow('Wildcard import is not supported')
+    expect(() => transformFileSync(FIXTURES + 'wildcard-import/source.js')).toThrow(
+      'Wildcard import is not supported',
+    )
   })
 
   it('should load environment variables from .env', () => {
@@ -62,27 +64,29 @@ describe('babel-plugin-dotenv-import', () => {
 
   it('should leave other imports untouched', () => {
     const {code} = transformFileSync(FIXTURES + 'unused/source.js')
-    expect(code).toBe('import path from \'path\'; // eslint-disable-line import/no-unresolved\n\nconsole.log(path.join);')
+    expect(code).toBe(
+      "import path from 'path'; // eslint-disable-line import/no-unresolved\n\nconsole.log(path.join);",
+    )
   })
 
   it('should throw when using non-whitelisted env variables', () => {
-    expect(
-      () => transformFileSync(FIXTURES + 'whitelist/source.js')
-    ).toThrow('"NOT_WHITELISTED" was not whitelisted')
+    expect(() => transformFileSync(FIXTURES + 'whitelist/source.js')).toThrow(
+      '"NOT_WHITELISTED" was not whitelisted',
+    )
   })
 
   it('should throw when using blacklisted env variables', () => {
-    expect(
-      () => transformFileSync(FIXTURES + 'blacklist/source.js')
-    ).toThrow('"BLACKLISTED" was blacklisted')
+    expect(() => transformFileSync(FIXTURES + 'blacklist/source.js')).toThrow(
+      '"BLACKLISTED" was blacklisted',
+    )
   })
 
   it('should throw when trying to use a variable not defined in .env in safe mode', () => {
     process.env.FROM_ENV = 'here'
 
-    expect(
-      () => transformFileSync(FIXTURES + 'safe-error/source.js')
-    ).toThrow('"FROM_ENV" is not defined')
+    expect(() => transformFileSync(FIXTURES + 'safe-error/source.js')).toThrow(
+      '"FROM_ENV" is not defined',
+    )
   })
 
   it('should load environment variables from .env in safe mode', () => {
