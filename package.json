@@ -17,7 +17,7 @@
     "dotenv": "^15.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
+    "@babel/core": "^7.17.2",
     "@bizon/semantic-release-config": "^1.1.0",
     "codecov": "^3.8.3",
     "jest": "^27.4.7",
