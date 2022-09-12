@@ -20,7 +20,7 @@
     "@babel/core": "^7.16.7",
     "@bizon/semantic-release-config": "^1.1.0",
     "codecov": "^3.8.3",
-    "jest": "^27.5.1",
+    "jest": "^29.0.3",
     "jest-junit": "^13.0.0",
     "semantic-release": "^19.0.2",
     "xo": "^0.48.0"
