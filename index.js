@@ -1,5 +1,5 @@
-const process = require('process')
 const {readFileSync} = require('fs')
+const process = require('process')
 
 const dotenv = require('dotenv')
 
