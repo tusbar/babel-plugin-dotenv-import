@@ -69,15 +69,15 @@ describe('babel-plugin-dotenv-import', () => {
     )
   })
 
-  it('should throw when using non-whitelisted env variables', () => {
-    expect(() => transformFileSync(FIXTURES + 'whitelist/source.js')).toThrow(
-      '"NOT_WHITELISTED" was not whitelisted',
+  it('should throw when using non-allowlisted env variables', () => {
+    expect(() => transformFileSync(FIXTURES + 'allowlist/source.js')).toThrow(
+      '"NOT_ALLOWLISTED" was not allowlisted',
     )
   })
 
-  it('should throw when using blacklisted env variables', () => {
-    expect(() => transformFileSync(FIXTURES + 'blacklist/source.js')).toThrow(
-      '"BLACKLISTED" was blacklisted',
+  it('should throw when using blocklisted env variables', () => {
+    expect(() => transformFileSync(FIXTURES + 'blocklist/source.js')).toThrow(
+      '"BLOCKLISTED" was blocklisted',
     )
   })
 

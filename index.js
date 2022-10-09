@@ -23,8 +23,8 @@ module.exports = ({types: t}) => ({
     this.opts = {
       moduleName: '@env',
       path: '.env',
-      whitelist: null,
-      blacklist: null,
+      allowlist: null,
+      blocklist: null,
       safe: false,
       allowUndefined: false,
       ...this.opts,
@@ -57,14 +57,14 @@ module.exports = ({types: t}) => ({
           const importedId = specifier.imported.name
           const localId = specifier.local.name
 
-          if (Array.isArray(opts.whitelist) && !opts.whitelist.includes(importedId)) {
+          if (Array.isArray(opts.allowlist) && !opts.allowlist.includes(importedId)) {
             throw path
               .get('specifiers')
-              [idx].buildCodeFrameError(`"${importedId}" was not whitelisted`)
+              [idx].buildCodeFrameError(`"${importedId}" was not allowlisted`)
           }
 
-          if (Array.isArray(opts.blacklist) && opts.blacklist.includes(importedId)) {
-            throw path.get('specifiers')[idx].buildCodeFrameError(`"${importedId}" was blacklisted`)
+          if (Array.isArray(opts.blocklist) && opts.blocklist.includes(importedId)) {
+            throw path.get('specifiers')[idx].buildCodeFrameError(`"${importedId}" was blocklisted`)
           }
 
           if (!opts.allowUndefined && !Object.prototype.hasOwnProperty.call(this.env, importedId)) {
