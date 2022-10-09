@@ -27,8 +27,8 @@ $ npm install babel-plugin-dotenv-import
     ["dotenv-import", {
       "moduleName": "@env",
       "path": ".env",
-      "blacklist": null,
-      "whitelist": null,
+      "blocklist": null,
+      "allowlist": null,
       "safe": false,
       "allowUndefined": false
     }]
@@ -55,15 +55,15 @@ fetch(`${API_URL}/users`, {
 })
 ```
 
-## White and black lists
+## Allow and block lists
 
-It is possible to limit the scope of env variables that will be imported by specifying a `whitelist` and/or a `blacklist` as an array of strings.
+It is possible to limit the scope of env variables that will be imported by specifying a `allowlist` and/or a `blocklist` as an array of strings.
 
 ```json
 {
   "plugins": [
     ["dotenv-import", {
-      "blacklist": [
+      "blocklist": [
         "GITHUB_TOKEN"
       ]
     }]
@@ -75,7 +75,7 @@ It is possible to limit the scope of env variables that will be imported by spec
 {
   "plugins": [
     ["dotenv-import", {
-      "whitelist": [
+      "allowlist": [
         "API_URL",
         "API_TOKEN"
       ]
