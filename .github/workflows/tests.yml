@@ -50,7 +50,7 @@ jobs:
 
       - name: Upload jest junit test results
         if: success() || failure()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: jest-test-results
           path: reports/tests/junit.xml
