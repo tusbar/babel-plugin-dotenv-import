@@ -20,9 +20,10 @@
     "@babel/core": "^7.16.7",
     "@bizon/semantic-release-config": "^1.2.0",
     "codecov": "^3.8.3",
+    "eslint-config-xo-bizon": "^1.1.1",
     "jest": "^29.1.2",
     "semantic-release": "^19.0.2",
-    "xo": "^0.48.0"
+    "xo": "^0.52.4"
   },
   "author": "Bertrand Marron",
   "license": "MIT",
@@ -42,12 +43,9 @@
     ]
   },
   "xo": {
+    "extends": "xo-bizon",
     "semicolon": false,
     "space": 2,
-    "rules": {
-      "unicorn/prefer-module": "off",
-      "unicorn/prefer-node-protocol": "off"
-    },
     "overrides": [
       {
         "files": "__tests__/**/*.js",
