@@ -6,6 +6,9 @@
   "homepage": "https://github.com/tusbar/babel-plugin-dotenv-import",
   "bugs": "https://github.com/tusbar/babel-plugin-dotenv-import/issues",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "jest"
   },
