@@ -25,7 +25,7 @@
     "codecov": "^3.8.3",
     "eslint-config-xo-bizon": "^1.1.2",
     "jest": "^29.3.1",
-    "semantic-release": "^19.0.5",
+    "semantic-release": "^20.1.0",
     "xo": "^0.53.1"
   },
   "author": "Bertrand Marron",
