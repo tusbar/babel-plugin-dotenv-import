@@ -24,7 +24,7 @@
     "@bizon/semantic-release-config": "^1.2.0",
     "codecov": "^3.8.3",
     "eslint-config-xo-bizon": "^1.1.2",
-    "jest": "^29.3.1",
+    "jest": "^29.4.1",
     "semantic-release": "^19.0.5",
     "xo": "^0.53.1"
   },
