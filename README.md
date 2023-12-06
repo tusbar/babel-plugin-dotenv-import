@@ -122,6 +122,26 @@ console.log(UNDEFINED_VAR === undefined) // true
 
 When `false` (default behavior), an error will be thrown.
 
+Alternatively, `allowUndefined` can be an array specifying the names of variables that are allowed to be `undefined`. Only the listed variables will be imported without errors if they are not defined, while others will still cause an error.
+
+```json
+{
+  "plugins": [
+    ["dotenv-import", {
+      "allowUndefined": ["ALLOWED_UNDEFINED_VAR"]
+    }]
+  ]
+}
+```
+
+```js
+import {ALLOWED_UNDEFINED_VAR, UNALLOWED_UNDEFINED} from '@env'
+
+console.log(ALLOWED_UNDEFINED_VAR === undefined) // true
+console.log(UNALLOWED_UNDEFINED) // Throws an error if not defined in .env
+```
+
+
 ## Caveats
 
 When using with [`babel-loader`](https://github.com/babel/babel-loader) with caching enabled you will run into issues where environment changes won’t be picked up.

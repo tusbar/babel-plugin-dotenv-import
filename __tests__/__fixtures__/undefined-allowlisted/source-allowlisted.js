@@ -1,0 +1,3 @@
+import {UNDEFINED_ALLOWLISTED} from '@env'
+
+console.log(UNDEFINED_ALLOWLISTED)
