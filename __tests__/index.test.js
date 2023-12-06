@@ -99,6 +99,17 @@ describe('babel-plugin-dotenv-import', () => {
     expect(code).toBe('console.log(undefined);')
   })
 
+  it('should import allowlisted undefined variables', () => {
+    const {code} = transformFileSync(FIXTURES + 'undefined-allowlisted/source-allowlisted.js')
+    expect(code).toBe('console.log(undefined);')
+  })
+
+  it('should throw when trying to import an undefined variable that is not in the allowUndefined array', () => {
+    expect(() => transformFileSync(FIXTURES + 'undefined-allowlisted/source-undefined.js')).toThrow(
+      '"UNDEFINED_UNLISTED\" is not defined in .env or in allowUndefined[]'
+    )
+  })
+
   it('should not throw if .env exists in safe mode', () => {
     const {code} = transformFileSync(FIXTURES + 'safe-no-dotenv/source.js')
     expect(code).toBe('console.log(undefined);')

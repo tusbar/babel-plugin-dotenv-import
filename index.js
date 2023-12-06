@@ -67,7 +67,11 @@ module.exports = ({types: t}) => ({
             throw path.get('specifiers')[idx].buildCodeFrameError(`"${importedId}" was blocklisted`)
           }
 
-          if (!opts.allowUndefined && !Object.prototype.hasOwnProperty.call(this.env, importedId)) {
+          if (Array.isArray(opts.allowUndefined) && !Object.prototype.hasOwnProperty.call(this.env, importedId) && !opts.allowUndefined.includes(importedId)) {
+            throw path
+              .get('specifiers')
+              [idx].buildCodeFrameError(`"${importedId}" is not defined in ${opts.path} or in allowUndefined[]`)
+          } else if (!opts.allowUndefined && !Object.prototype.hasOwnProperty.call(this.env, importedId)) {
             throw path
               .get('specifiers')
               [idx].buildCodeFrameError(`"${importedId}" is not defined in ${opts.path}`)
